@@ -6,4 +6,16 @@ RSpec.describe User, type: :model do
     it { should have_many :favorites }
     it { should have_many :applications }
   end
+
+  describe 'validations' do
+    it { should validate_presence_of :username }
+    it { should validate_presence_of :email }
+
+    it 'return an error if the email is not in the correct format' do
+      user = User.create(username: 'bobgu',
+                         email: "Not an email")
+
+      expect(user.errors[:email].to_sentence).to eq("is invalid")
+    end
+  end
 end
