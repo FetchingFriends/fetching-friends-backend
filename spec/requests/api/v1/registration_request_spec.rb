@@ -42,6 +42,24 @@ RSpec.describe 'User registration request' do
       expect(bad_request_json[:error]).to eq('Must provide request body')
     end
 
+    it 'does not create user if email is incorrect format' do
+      user_params = { username: 'bobgu',
+                      email: 'wrongformat'}
+
+      headers = {"CONTENT_TYPE" => "application/json",
+                 "ACCEPT"       => "application/json"}
+
+      post '/api/v1/users', headers: headers, params: user_params.to_json
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(User.all.count).to eq(0)
+
+      bad_request_json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(bad_request_json[:error]).to eq('Email is invalid')
+    end
+
     it 'does not create user if username has already been used' do
       first_user = create(:user)
       expect(User.all.count).to eq(1)
