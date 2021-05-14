@@ -13,5 +13,5 @@ class Pet < ApplicationRecord
             greater_than_or_equal_to: 0
           }
 
- enum type: [:other, :dog, :cat]
+  enum type: [:other, :dog, :cat]
 end
