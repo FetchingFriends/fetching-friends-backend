@@ -2,11 +2,11 @@ class Api::V1::UsersController < ApplicationController
   before_action :validate_params
 
   def create
-    user = User.create!(user_params)
+    user = User.create(user_params)
     if user.save
       render json: UserSerializer.new(user), status: :created
     else
-      render json: { error: user.errors.full_messages.to_sentance }, status: :bad_request
+      render json: { error: user.errors.full_messages.to_sentence }, status: :bad_request
     end
   end
 
