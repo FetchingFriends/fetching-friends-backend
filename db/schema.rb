@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 2021_05_13_222546) do
     t.string "breed"
     t.text "description"
     t.string "gender"
-    t.boolean "fixed"
-    t.boolean "house_trained"
+    t.boolean "fixed", default: false
+    t.boolean "house_trained", default: false
     t.text "photo_url_1"
     t.text "photo_url_2"
     t.text "photo_url_3"
-    t.boolean "good_with_kids"
-    t.boolean "good_with_animals"
+    t.boolean "good_with_kids", default: false
+    t.boolean "good_with_animals", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_pets_on_user_id"
