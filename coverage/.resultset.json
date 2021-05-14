@@ -1,7 +1,70 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/arikablenker/turing/4module/projects/fetching-friends-backend/app/models/application.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/arikablenker/turing/4module/projects/fetching-friends-backend/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/arikablenker/turing/4module/projects/fetching-friends-backend/app/models/favorite.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/arikablenker/turing/4module/projects/fetching-friends-backend/app/models/pet.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/arikablenker/turing/4module/projects/fetching-friends-backend/app/models/user.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null
+        ]
+      }
     },
-    "timestamp": 1620945574
+    "timestamp": 1620956380
   }
 }
