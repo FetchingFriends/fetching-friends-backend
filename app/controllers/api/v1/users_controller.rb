@@ -1,5 +1,10 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :validate_params
+  before_action :validate_params, only: [:create]
+
+  def index
+    user = User.find_by(email: params[:email])
+    render json: UserSerializer.new(user), status: :ok
+  end
 
   def create
     user = User.create(user_params)
