@@ -4,6 +4,7 @@ RSpec.describe "GET api/v1/users?email=<user_email>" do
   describe "Happy Path" do
     it "returns a user object with its pets, favorites, and applications" do
       @user = User.create!(username: "cool_cat", email: "email@domain.com")
+      @pet = @user.pets.create!(name: "dog", pet_type: 1, description: "a good boy", gender: "M", photo_url_1: "a photo", age: 2)
 
       get "/api/v1/users?email=#{@user.email}"
 
@@ -19,6 +20,16 @@ RSpec.describe "GET api/v1/users?email=<user_email>" do
       expect(user_object[:data][:type]).to eq("full_user")
       expect(user_object[:data][:attributes]).to be_a(Hash)
       expect(user_object[:data][:attributes].keys).to eq([:username, :email, :pets, :favorites, :applications, :pet_applications])
+      expect(user_object[:data][:attributes][:username]).to eq(@user.username)
+      expect(user_object[:data][:attributes][:email]).to eq(@user.email)
+      expect(user_object[:data][:attributes][:pets]).to be_an(Array)
+      expect(user_object[:data][:attributes][:pets].first).to be_a(Hash)
+      expect(user_object[:data][:attributes][:favorites]).to be_an(Array)
+      # expect(user_object[:data][:attributes][:favorites].first).to be_a(Hash)
+      expect(user_object[:data][:attributes][:applications]).to be_an(Array)
+      # expect(user_object[:data][:attributes][:applications].first).to be_a(Hash)
+      expect(user_object[:data][:attributes][:pet_applications]).to be_an(Array)
+      # expect(user_object[:data][:attributes][:pet_applications].first).to be_a(Hash)
     end
   end
 end
