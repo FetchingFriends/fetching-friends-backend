@@ -3,7 +3,23 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     user = User.find_by(email: params[:email])
-    render json: FullUserSerializer.new(user), status: :ok
+    # user_data = UserSerializer.new(user)
+    # pets_data = PetSerializer.new(user.pets)
+    # applications_data = ApplicationSerializer.new(user.applications)
+
+    pet_applications = user.pets.map do |pet|
+      pet.applications
+    end.flatten
+
+    favorite_pets = user.favorites.map do |favorite|
+      favorite.pet
+    end
+
+    user_object = OpenStruct.new(id: user.id, username: user.username, email: user.email, pets: user.pets, applications: user.applications, favorites: favorite_pets, pet_applications: pet_applications)
+
+    # pet_applications_data = ApplicationSerializer.new(pet_applications)
+    # render json: {data: {id: nil, type: "full_user_details", user: user_data, pets: pets_data, applications: applications_data, pet_applications: pet_applications_data}}, status: :ok
+    render json: FullUserSerializer.new(user_object), status: :ok
   end
 
   def create
