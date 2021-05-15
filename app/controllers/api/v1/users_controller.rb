@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     user = User.find_by(email: params[:email])
-    render json: UserSerializer.new(user), status: :ok
+    render json: FullUserSerializer.new(user), status: :ok
   end
 
   def create

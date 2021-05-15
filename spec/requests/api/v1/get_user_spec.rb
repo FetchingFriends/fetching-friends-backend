@@ -16,7 +16,7 @@ RSpec.describe "GET api/v1/users?email=<user_email>" do
       expect(user_object[:data]).to be_a(Hash)
       expect(user_object[:data].keys).to eq([:id, :type, :attributes])
       expect(user_object[:data][:id]).to eq("#{@user.id}")
-      expect(user_object[:data][:type]).to eq("user")
+      expect(user_object[:data][:type]).to eq("full_user")
       expect(user_object[:data][:attributes]).to be_a(Hash)
       expect(user_object[:data][:attributes].keys).to eq([:username, :email, :pets, :favorites, :applications, :pet_applications])
     end
