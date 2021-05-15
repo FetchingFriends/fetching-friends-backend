@@ -3,8 +3,8 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :applications
 
-  validates_presence_of :username
+  validates :username, uniqueness: true, presence: true
 
-  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, uniqueness: true, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
 end
