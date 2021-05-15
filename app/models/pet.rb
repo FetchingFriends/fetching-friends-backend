@@ -4,7 +4,7 @@ class Pet < ApplicationRecord
   has_many :applications
 
   validates_presence_of :name,
-                        :type,
+                        :pet_type,
                         :description,
                         :gender,
                         :photo_url_1
@@ -13,5 +13,5 @@ class Pet < ApplicationRecord
             greater_than_or_equal_to: 0
           }
 
-  enum type: [:other, :dog, :cat]
+  enum pet_type: [:other, :dog, :cat]
 end
