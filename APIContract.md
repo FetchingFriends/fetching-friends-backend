@@ -1,4 +1,4 @@
-# Yardsourcing API Contract
+# Fetching Friends API Contract
 
 ## Endpoints
 
@@ -8,8 +8,10 @@
 | GET | /api/v1/users/:user_id | Get a user, and users pets, favorited  pets, and applications| [json](#all-user-data) |
 | POST | /api/v1/users | Create a new user | [json](#create-user) |
 | POST | /api/v1/pets | Create a new pet | [json](#create-pet) |
-| DELETE | /api/v1/pets/:pet_id  | Delete a pet | [details](#delete-a-yard) |
-| PUT | /api/v1/yards/:yard_id | Update a yard | [json](#update-a-yard)
+| DELETE | /api/v1/pets/:pet_id  | Delete a pet | [details](#delete-a-pet) |
+| DELETE | /api/v1/application/:application_id  | Delete an application | [details](#delete-an-application) |
+| PUT | /api/v1/application/:application_id | Update an application | [json](#update-an-application)
+| PUT | /api/v1/pet/:pet_id | Update a pet | [json](#update-a-pet)
 
 ## JSON Responses
 
@@ -224,6 +226,10 @@
   }
   ```
 
-## Delete a Booking
-`DELETE /api/v1/bookings/:booking_id`
+## Delete a Pet
+`DELETE /api/v1/pets/:pet_id`
+- remove pet from database if the id matches
+
+## Delete an Application
+`DELETE /api/v1/applications/:application_id`
 - remove pet from database if the id matches
