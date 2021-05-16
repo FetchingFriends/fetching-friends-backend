@@ -20,5 +20,19 @@ RSpec.describe UserFacade, type: :model do
       expect(data.favorites).to eq([@users.second.pets.first, @users.second.pets.last])
       expect(data.pet_applications).to eq([@users.second.applications.second, @users.second.applications.first])
     end
+
+    it "returns a error object if an invalid email is provided" do
+      data = UserFacade.get_all_user_data("not@email.com")
+
+      expect(data).to be_a(OpenStruct)
+      expect(data.error).to eq("invalid email")
+    end
+
+    it "returns a error object if no email is provided" do
+      data = UserFacade.get_all_user_data(nil)
+
+      expect(data).to be_a(OpenStruct)
+      expect(data.error).to eq("email required")
+    end
   end
 end

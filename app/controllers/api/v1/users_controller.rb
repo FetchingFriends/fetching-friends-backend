@@ -2,20 +2,13 @@ class Api::V1::UsersController < ApplicationController
   before_action :validate_params, only: [:create]
 
   def index
-    # user = User.find_by(email: params[:email])
-    #
-    # pet_applications = user.pets.map do |pet|
-    #   pet.applications
-    # end.flatten
-    #
-    # favorite_pets = user.favorites.map do |favorite|
-    #   favorite.pet
-    # end
-    #
-    # user_object = OpenStruct.new(id: user.id, username: user.username, email: user.email, pets: user.pets, applications: user.applications, favorites: favorite_pets, pet_applications: pet_applications)
-    user_object = UserFacade.get_all_user_data(params[:email])
+    user = UserFacade.get_all_user_data(params[:email])
 
-    render json: FullUserSerializer.new(user_object), status: :ok
+    if user.error
+      render json: {error: user.error}, status: :bad_request
+    else
+      render json: FullUserSerializer.new(user), status: :ok
+    end
   end
 
   def create
