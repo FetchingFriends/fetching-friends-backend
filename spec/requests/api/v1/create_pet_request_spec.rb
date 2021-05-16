@@ -2,9 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'Create a pet request' do
   describe 'happy path' do
+    before :each do
+      @user = create(:user)
+    end
+
     it 'can create a pet' do
-      user = create(:user)
-      pet_params = { user_id: user.id,
+      pet_params = { user_id: @user.id,
                      name: 'Spot',
                      age: 1,
                      pet_type: :dog,
@@ -37,7 +40,7 @@ RSpec.describe 'Create a pet request' do
       expect(new_pet_json[:data][:type]).to eq('pet')
       expect(new_pet_json[:data][:attributes].count).to eq(14)
       expect(new_pet_json[:data][:attributes].keys).to eq([:user_id, :name, :age, :pet_type, :breed, :description, :gender, :fixed, :house_trained, :good_with_kids, :good_with_animals, :photo_url_1, :photo_url_2, :photo_url_3])
-      expect(new_pet_json[:data][:attributes][:user_id]).to eq(user.id)
+      expect(new_pet_json[:data][:attributes][:user_id]).to eq(@user.id)
       expect(new_pet_json[:data][:attributes][:name]).to eq(pet_params[:name])
       expect(new_pet_json[:data][:attributes][:age]).to eq(pet_params[:age])
       expect(new_pet_json[:data][:attributes][:pet_type]).to eq(pet_params[:pet_type].to_s)
@@ -54,8 +57,7 @@ RSpec.describe 'Create a pet request' do
     end
 
     it 'can create a pet with default values' do
-      user = create(:user)
-      pet_params = { user_id: user.id,
+      pet_params = { user_id: @user.id,
                      name: 'Spot',
                      age: 1,
                      pet_type: :dog,
@@ -87,6 +89,55 @@ RSpec.describe 'Create a pet request' do
       expect(new_pet_json[:data][:attributes][:house_trained]).to eq(false)
       expect(new_pet_json[:data][:attributes][:good_with_kids]).to eq(false)
       expect(new_pet_json[:data][:attributes][:good_with_animals]).to eq(false)
+    end
+  end
+
+  describe 'sad paths' do
+    before :each do
+      @user = create(:user)
+    end
+
+    it 'unsuccessful response without require attributes' do
+      pet_params = { user_id: @user.id,
+                     age: 1,
+                     pet_type: :dog,
+                     breed: 'Lab',
+                     description: 'Good boy',
+                     gender: 'Male',
+                     fixed: true,
+                     house_trained: true,
+                     good_with_kids: true,
+                     good_with_animals: false,
+                     photo_url_1: 'url_address_1',
+                     photo_url_2: 'url_address_2',
+                     photo_url_3: 'url_address_3'}
+      headers = {"CONTENT_TYPE" => "application/json",
+                 "ACCEPT"       => "application/json"}
+
+      post '/api/v1/pets', headers: headers, params: pet_params.to_json
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(Pet.all.count).to eq(0)
+
+      bad_request_json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(bad_request_json[:error]).to eq("Name can't be blank")
+    end
+
+    it 'does not create pet if body is empty' do
+      headers = {"CONTENT_TYPE" => "application/json",
+                 "ACCEPT"       => "application/json"}
+
+      post '/api/v1/pets', headers: headers
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(Pet.all.count).to eq(0)
+
+      bad_request_json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(bad_request_json[:error]).to eq("Must provide request body")
     end
   end
 end
