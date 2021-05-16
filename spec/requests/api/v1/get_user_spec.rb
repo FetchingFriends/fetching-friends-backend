@@ -38,4 +38,24 @@ RSpec.describe "GET api/v1/users?email=<user_email>", type: :request do
       expect(user_object[:data][:attributes][:pet_applications].first.keys).to eq([:id, :user_id, :pet_id, :status, :description, :created_at, :updated_at])
     end
   end
+
+  describe "Sad Path and Edge Case" do
+    it "returns an error if no email is provided" do
+      get "/api/v1/users"
+
+      data = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(data).to eq({error: "email required"})
+    end
+
+    it "returns an error if an invalid email is provided" do
+      get "/api/v1/users?email=invalid@email.com"
+
+      data = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(data).to eq({error: "invalid email"})
+    end
+  end
 end
