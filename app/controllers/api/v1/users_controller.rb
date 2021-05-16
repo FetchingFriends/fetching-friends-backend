@@ -1,5 +1,15 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :validate_params
+  before_action :validate_params, only: [:create]
+
+  def index
+    user = UserFacade.get_all_user_data(params[:email])
+
+    if user.error
+      render json: {error: user.error}, status: :bad_request
+    else
+      render json: FullUserSerializer.new(user), status: :ok
+    end
+  end
 
   def create
     user = User.create(user_params)
