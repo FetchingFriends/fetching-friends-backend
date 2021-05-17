@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'User registration request' do
+RSpec.describe 'User pets request' do
   describe 'happy path' do
     it "can find a user's pets" do
       user = create(:user)
@@ -10,7 +10,6 @@ RSpec.describe 'User registration request' do
 
       get "/api/v1/users/#{user.id}/pets"
       user_pets = JSON.parse(response.body, symbolize_names: true)
-
       expect(response).to be_successful
       expect(response.status).to eq(200)
       expect(user_pets).to be_a(Hash)
@@ -62,6 +61,19 @@ RSpec.describe 'User registration request' do
 
     it "will return an error if user does not exist" do
       get '/api/v1/users/10/pets'
+      user_pets = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(404)
+      expect(user_pets).to be_a(Hash)
+      expect(user_pets.count).to eq(2)
+      expect(user_pets).to have_key(:error)
+      expect(user_pets[:error]).to eq("No such user")
+      expect(user_pets).to have_key(:status)
+      expect(user_pets[:status]).to eq(404)
+    end
+
+    it "will return an error if given bad data type" do
+      get '/api/v1/users/asdfasd/pets'
       user_pets = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(404)
