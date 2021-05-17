@@ -4,7 +4,7 @@ class CreatePets < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.string :name
       t.integer :age
-      t.integer :type
+      t.integer :pet_type
       t.string :breed
       t.text :description
       t.string :gender
