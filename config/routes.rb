@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :index] do
         resources :pets, controller: :user_pets, only: :index
       end
-
+      resources :pet_applications, only: [:create]
     end
   end
 end
