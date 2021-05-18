@@ -63,6 +63,7 @@ RSpec.describe Pet, type: :model do
       expect(Pet.check_plural?("dOg")).to eq("dog")
       expect(Pet.check_plural?("FROgS")).to eq("frog")
       expect(Pet.check_plural?("")).to eq("")
+      expect(Pet.check_plural?(123)).to eq("123")
     end
   end
 end

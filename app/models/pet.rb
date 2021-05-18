@@ -34,10 +34,11 @@ class Pet < ApplicationRecord
   end
 
   def self.check_plural?(search_term='')
-    if search_term.downcase[-1] == 's'
-      search_term = search_term[0..-2].downcase
+    search_term = search_term.to_s.downcase
+    if search_term[-1] == 's'
+      search_term = search_term[0..-2]
     else
-      search_term = search_term.downcase
+      search_term 
     end
   end
 end
