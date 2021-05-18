@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :pets, only: :create
+      resources :pets, only: [:create, :index]
 
       resources :users, only: [:create, :index] do
         resources :pets, controller: :user_pets, only: :index
