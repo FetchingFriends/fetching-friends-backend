@@ -11,7 +11,7 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def index
-    pets = Pet.pet_search(pet_type)
+    pets = Pet.search(pet_type)
     if pets
       render json: PetSerializer.new(pets)
     else

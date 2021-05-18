@@ -36,21 +36,22 @@ RSpec.describe Pet, type: :model do
       end
     end
 
-    it 'pet_search' do
-      expect(Pet.pet_search("cats").count).to eq(3)
-      expect(Pet.pet_search("others").count).to eq(6)
-      expect(Pet.pet_search("dogs").count).to eq(5)
+    it 'search' do
+      expect(Pet.search("cats").count).to eq(3)
+      expect(Pet.search("others").count).to eq(6)
+      expect(Pet.search("dogs").count).to eq(5)
+      expect(Pet.search(nil)).to eq(nil)
     end
 
-    it 'enum_eval' do
-      expect(Pet.enum_eval("cats")).to eq(2)
-      expect(Pet.enum_eval("cat")).to eq(2)
-      expect(Pet.enum_eval("others")).to eq(0)
-      expect(Pet.enum_eval("other")).to eq(0)
-      expect(Pet.enum_eval("dogs")).to eq(1)
-      expect(Pet.enum_eval("dog")).to eq(1)
-      expect(Pet.enum_eval("frogs")).to eq(false)
-      expect(Pet.enum_eval(nil)).to eq(false)
+    it 'assign_enum' do
+      expect(Pet.assign_enum("cats")).to eq(2)
+      expect(Pet.assign_enum("cat")).to eq(2)
+      expect(Pet.assign_enum("others")).to eq(0)
+      expect(Pet.assign_enum("other")).to eq(0)
+      expect(Pet.assign_enum("dogs")).to eq(1)
+      expect(Pet.assign_enum("dog")).to eq(1)
+      expect(Pet.assign_enum("frogs")).to eq(nil)
+      expect(Pet.assign_enum(nil)).to eq(nil)
     end
 
     it 'check_plural' do
@@ -61,6 +62,7 @@ RSpec.describe Pet, type: :model do
       expect(Pet.check_plural?("DOGS")).to eq("dog")
       expect(Pet.check_plural?("dOg")).to eq("dog")
       expect(Pet.check_plural?("FROgS")).to eq("frog")
+      expect(Pet.check_plural?("")).to eq("")
     end
   end
 end
