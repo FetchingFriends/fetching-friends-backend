@@ -19,7 +19,7 @@ RSpec.describe 'User pets request' do
       end
     end
 
-    it "can return all instances of a specified pet type" do
+    it "can return all instances of dog" do
 
       get "/api/v1/pets?type=dogs"
       pets = JSON.parse(response.body, symbolize_names: true)
@@ -42,6 +42,78 @@ RSpec.describe 'User pets request' do
         expect(pet[:attributes][:name]).to be_a(String)
         expect(pet[:attributes][:age]).to be_a(Integer)
         expect(pet[:attributes][:pet_type]).to eq('dog')
+        expect(pet[:attributes][:breed]).to be_a(String)
+        expect(pet[:attributes][:description]).to be_a(String)
+        expect(pet[:attributes][:gender]).to be_a(String)
+        expect(pet[:attributes][:fixed]).to be_in([true, false])
+        expect(pet[:attributes][:house_trained]).to be_in([true, false])
+        expect(pet[:attributes][:good_with_kids]).to be_in([true, false])
+        expect(pet[:attributes][:good_with_animals]).to be_in([true, false])
+        expect(pet[:attributes][:photo_url_1]).to be_a(String)
+        expect(pet[:attributes][:photo_url_2]).to eq(nil)
+        expect(pet[:attributes][:photo_url_3]).to eq(nil)
+      end
+    end
+
+    it "can return all instances of cat" do
+
+      get "/api/v1/pets?type=cats"
+      pets = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      expect(pets).to be_a(Hash)
+      expect(pets.count).to eq(1)
+      expect(pets).to have_key(:data)
+      expect(pets[:data]).to be_a(Array)
+      expect(pets[:data].count).to eq(3)
+      pets[:data].each do |pet|
+        expect(pet).to be_a(Hash)
+        expect(pet.count).to eq(3)
+        expect(pet.keys).to eq([:id, :type, :attributes])
+        expect(pet[:id]).to be_a(String)
+        expect(pet[:type]).to eq('pet')
+        expect(pet[:attributes].count).to eq(14)
+        expect(pet[:attributes].keys).to eq([:user_id, :name, :age, :pet_type, :breed, :description, :gender, :fixed, :house_trained, :good_with_kids, :good_with_animals, :photo_url_1, :photo_url_2, :photo_url_3])
+        expect(pet[:attributes][:user_id]).to be_a(Integer)
+        expect(pet[:attributes][:name]).to be_a(String)
+        expect(pet[:attributes][:age]).to be_a(Integer)
+        expect(pet[:attributes][:pet_type]).to eq('cat')
+        expect(pet[:attributes][:breed]).to be_a(String)
+        expect(pet[:attributes][:description]).to be_a(String)
+        expect(pet[:attributes][:gender]).to be_a(String)
+        expect(pet[:attributes][:fixed]).to be_in([true, false])
+        expect(pet[:attributes][:house_trained]).to be_in([true, false])
+        expect(pet[:attributes][:good_with_kids]).to be_in([true, false])
+        expect(pet[:attributes][:good_with_animals]).to be_in([true, false])
+        expect(pet[:attributes][:photo_url_1]).to be_a(String)
+        expect(pet[:attributes][:photo_url_2]).to eq(nil)
+        expect(pet[:attributes][:photo_url_3]).to eq(nil)
+      end
+    end
+
+    it "can return all instances of other" do
+
+      get "/api/v1/pets?type=others"
+      pets = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      expect(pets).to be_a(Hash)
+      expect(pets.count).to eq(1)
+      expect(pets).to have_key(:data)
+      expect(pets[:data]).to be_a(Array)
+      expect(pets[:data].count).to eq(6)
+      pets[:data].each do |pet|
+        expect(pet).to be_a(Hash)
+        expect(pet.count).to eq(3)
+        expect(pet.keys).to eq([:id, :type, :attributes])
+        expect(pet[:id]).to be_a(String)
+        expect(pet[:type]).to eq('pet')
+        expect(pet[:attributes].count).to eq(14)
+        expect(pet[:attributes].keys).to eq([:user_id, :name, :age, :pet_type, :breed, :description, :gender, :fixed, :house_trained, :good_with_kids, :good_with_animals, :photo_url_1, :photo_url_2, :photo_url_3])
+        expect(pet[:attributes][:user_id]).to be_a(Integer)
+        expect(pet[:attributes][:name]).to be_a(String)
+        expect(pet[:attributes][:age]).to be_a(Integer)
+        expect(pet[:attributes][:pet_type]).to eq('other')
         expect(pet[:attributes][:breed]).to be_a(String)
         expect(pet[:attributes][:description]).to be_a(String)
         expect(pet[:attributes][:gender]).to be_a(String)
