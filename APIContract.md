@@ -4,7 +4,8 @@
 
 | HTTP verbs | Paths  | Used for | Output |
 | ---------- | ------ | -------- | ------:|
-| GET | /api/v1/pets/:type | Get all pets of a given type | [json](#pets-by-type) |
+| GET | /api/v1/pets?type=dog | Get all pets of a given type | [json](#pets-by-type) |
+| GET | /api/v1/user/:id/pets | Get all pets belonging to a user | [json](#pets-by-user) |
 | GET | /api/v1/users/:user_id | Get a user, and users pets, favorited  pets, and applications| [json](#all-user-data) |
 | POST | /api/v1/users | Create a new user | [json](#create-user) |
 | POST | /api/v1/pets | Create a new pet | [json](#create-pet) |
@@ -16,7 +17,8 @@
 ## JSON Responses
 
 ## Pets by Type
-`GET /api/v1/pets/dog`
+`acceptable type = cat, dog, other`
+`GET /api/v1/pets?type=dog`
   ```json
   {
     "data": [
@@ -81,7 +83,55 @@
     ]
   }
   ```
-
+  
+## Pets by User
+`GET /api/v1/user/5/pets`
+  ```json
+  {
+    "data": [
+      {
+        "id": "1",
+          "type": "pet",
+          "attributes": {
+            "type": "dog",
+            "user_id": 5,
+            "name": "Max",
+            "age": 1,
+            "breed": "Lab",
+            "description": "Good Boy",
+            "gender": "M",
+            "fix": true,
+            "house trained": true,
+            "good with kids": true,
+            "good with other pets": true,
+            "photo_url_1": "URL Path",
+            "photo_url_2": "URL Path",
+            "photo_url_3": "URL Path",
+          }
+      },
+      {
+        "id": "4",
+          "type": "pet",
+          "attributes": {
+            "user_id": 5,
+            "name": "Lassy",
+            "age": 5,
+            "breed": "Boxer",
+            "description": "Very nice and lovable",
+            "gender": "F",
+            "fix": false,
+            "house trained": true,
+            "good with kids": true,
+            "good with other pets": true,
+            "photo_url_1": "URL Path",
+            "photo_url_2": "URL Path",
+            "photo_url_3": "URL Path",
+          }
+      }
+      }
+    ]
+  }
+  ```
 ## All User Data
 `GET /api/v1/users?email=<user_email>`
   ```json
