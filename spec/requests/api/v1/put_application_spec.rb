@@ -7,30 +7,32 @@ RSpec.describe "api/v1/pet_applications", type: :request do
 
   describe "Happy path" do
     it "returns the updated application when a status is provided" do
-      application = @users.first.applications.first
-      application_params = {status: "interested"}
-      headers = {"CONTENT_TYPE" => "application/json",
-                 "ACCEPT"       => "application/json"}
+      VCR.use_cassette "update_application" do
+        application = @users.first.applications.first
+        application_params = {status: "interested"}
+        headers = {"CONTENT_TYPE" => "application/json",
+                   "ACCEPT"       => "application/json"}
 
-      expect(application.status).to eq("pending")
+        expect(application.status).to eq("pending")
 
-      put "/api/v1/pet_applications/#{application.id}", headers: headers, params: application_params.to_json
+        put "/api/v1/pet_applications/#{application.id}", headers: headers, params: application_params.to_json
 
-      body = JSON.parse(response.body, symbolize_names: true)
+        body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response).to be_successful
-      expect(response.status).to eq(200)
-      expect(response.content_type).to eq("application/json")
-      expect(body.keys).to eq([:data])
-      expect(body[:data].keys).to eq([:id, :type, :attributes])
-      expect(body[:data][:id]).to eq("#{application.id}")
-      expect(body[:data][:type]).to eq("application")
-      expect(body[:data][:attributes]).to be_a(Hash)
-      expect(body[:data][:attributes].keys).to eq([:user_id, :pet_id, :status, :description])
-      expect(body[:data][:attributes][:user_id]).to eq(@users.first.id)
-      expect(body[:data][:attributes][:pet_id]).to eq(@users.second.pets.first.id)
-      expect(body[:data][:attributes][:status]).to eq("interested")
-      expect(body[:data][:attributes][:description]).to eq("I want it!")
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+        expect(response.content_type).to eq("application/json")
+        expect(body.keys).to eq([:data])
+        expect(body[:data].keys).to eq([:id, :type, :attributes])
+        expect(body[:data][:id]).to eq("#{application.id}")
+        expect(body[:data][:type]).to eq("application")
+        expect(body[:data][:attributes]).to be_a(Hash)
+        expect(body[:data][:attributes].keys).to eq([:user_id, :pet_id, :status, :description])
+        expect(body[:data][:attributes][:user_id]).to eq(@users.first.id)
+        expect(body[:data][:attributes][:pet_id]).to eq(@users.second.pets.first.id)
+        expect(body[:data][:attributes][:status]).to eq("interested")
+        expect(body[:data][:attributes][:description]).to eq("I want it!")
+      end
     end
   end
 
