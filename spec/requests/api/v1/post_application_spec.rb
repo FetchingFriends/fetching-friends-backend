@@ -27,7 +27,6 @@ RSpec.describe "api/v1/applications", type: :request do
       expect(body[:data][:id]).to eq("#{new_application.id}")
       expect(body[:data][:type]).to eq("application")
       expect(body[:data][:attributes]).to be_a(Hash)
-      expect(body[:data][:attributes]).to be_a(Hash)
       expect(body[:data][:attributes].keys).to eq([:user_id, :pet_id, :status, :description])
       expect(body[:data][:attributes][:user_id]).to eq(@users.first.id)
       expect(body[:data][:attributes][:pet_id]).to eq(@users.last.pets.last.id)
@@ -99,7 +98,7 @@ RSpec.describe "api/v1/applications", type: :request do
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
-      expect(body).to eq({error: "Application already exists"})
+      expect(body).to eq({error: "Pet has already been taken"})
     end
   end
 end

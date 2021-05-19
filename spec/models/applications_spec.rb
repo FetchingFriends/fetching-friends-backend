@@ -9,6 +9,7 @@ RSpec.describe Application, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:status) }
     it { should validate_presence_of(:description) }
+    # it { should validate_uniqueness_of(:pet_id).scoped_to(:user_id)}
     it { should define_enum_for(:status).with_values([:pending, :interested, :denied]) }
   end
 end
