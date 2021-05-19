@@ -1,7 +1,266 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Favorite.destroy_all
+Application.destroy_all
+Pet.destroy_all
+User.destroy_all
+
+require 'faker'
+
+puts 'Seeding database with all the furry friends..'
+
+@user_1 = User.create(id: 1,
+                     username: Faker::Internet.username,
+                     email: Faker::Internet.free_email)
+@user_2 = User.create(id: 2,
+                     username: Faker::Internet.username,
+                     email: Faker::Internet.free_email)
+@user_3 = User.create(id: 3,
+                     username: Faker::Internet.username,
+                     email: Faker::Internet.free_email)
+@user_4 = User.create(id: 4,
+                     username: Faker::Internet.username,
+                     email: Faker::Internet.free_email)
+@user_5 = User.create(id: 5,
+                     username: Faker::Internet.username,
+                     email: Faker::Internet.free_email)
+@user_6 = User.create(id: 6,
+                     username: Faker::Internet.username,
+                     email: Faker::Internet.free_email)
+@user_7 = User.create(id: 7,
+                     username: Faker::Internet.username,
+                     email: Faker::Internet.free_email)
+
+@pet_1 = Pet.create(id: 1,
+                   user_id: @user_1.id,
+                   name: Faker::Creature::Dog.name,
+                   age: 4,
+                   pet_type: 1,
+                   breed: Faker::Creature::Dog.breed,
+                   description: "This is a great dog!",
+                   gender: Faker::Creature::Dog.gender,
+                   fixed: true,
+                   house_trained: true,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: true,
+                   good_with_animals: true)
+@pet_2 = Pet.create(id: 2,
+                   user_id: @user_1.id,
+                   name: Faker::Creature::Dog.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 1,
+                   breed: Faker::Creature::Dog.breed,
+                   description: "This dog is so fluffy",
+                   gender: Faker::Creature::Dog.gender,
+                   fixed: [true, false].sample,
+                   house_trained: [true, false].sample,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: [true, false].sample,
+                   good_with_animals: [true, false].sample)
+@pet_3 = Pet.create(id: 3,
+                   user_id: @user_1.id,
+                   name: Faker::Creature::Cat.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 2,
+                   breed: Faker::Creature::Cat.breed,
+                   description: "This kitty loves to sleep!",
+                   gender: 'female',
+                   fixed: [true, false].sample,
+                   house_trained: [true, false].sample,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: [true, false].sample,
+                   good_with_animals: [true, false].sample)
+@pet_4 = Pet.create(id: 4,
+                   user_id: @user_2.id,
+                   name: Faker::Creature::Cat.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 1,
+                   breed: Faker::Creature::Cat.breed,
+                   description: "They are so snuggly",
+                   gender: 'male',
+                   fixed: [true, false].sample,
+                   house_trained: [true, false].sample,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: [true, false].sample,
+                   good_with_animals: [true, false].sample)
+@pet_5 = Pet.create(id: 5,
+                   user_id: @user_2.id,
+                   name: Faker::Creature::Cat.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 1,
+                   breed: Faker::Creature::Cat.breed,
+                   description: "They are looking for a good home!",
+                   gender: 'male',
+                   fixed: [true, false].sample,
+                   house_trained: [true, false].sample,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: [true, false].sample,
+                   good_with_animals: [true, false].sample)
+@pet_6 = Pet.create(id: 6,
+                   user_id: @user_2.id,
+                   name: Faker::Creature::Dog.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 1,
+                   breed: Faker::Creature::Dog.breed,
+                   description: "They love to play fetch!",
+                   gender: Faker::Creature::Dog.gender,
+                   fixed: [true, false].sample,
+                   house_trained: [true, false].sample,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: [true, false].sample,
+                   good_with_animals: [true, false].sample)
+@pet_7 = Pet.create(id: 7,
+                   user_id: @user_3.id,
+                   name: Faker::Creature::Animal.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 0,
+                   breed: nil,
+                   description: "This snake needs a big terrarium!",
+                   gender: 'male',
+                   fixed: nil,
+                   house_trained: nil,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: nil,
+                   good_with_animals: nil)
+@pet_8 = Pet.create(id: 8,
+                   user_id: @user_3.id,
+                   name: Faker::Creature::Animal.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 0,
+                   breed: nil,
+                   description: "She is a leopard gecko",
+                   gender: 'female',
+                   fixed: nil,
+                   house_trained: nil,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: nil,
+                   good_with_animals: nil)
+@pet_9 = Pet.create(id: 9,
+                   user_id: @user_4.id,
+                   name: Faker::Creature::Dog.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 1,
+                   breed: Faker::Creature::Dog.breed,
+                   description: "This little one needs lots of chew toys!",
+                   gender: Faker::Creature::Dog.gender,
+                   fixed: [true, false].sample,
+                   house_trained: [true, false].sample,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: [true, false].sample,
+                   good_with_animals: [true, false].sample)
+@pet_10 = Pet.create(id: 10,
+                   user_id: @user_4.id,
+                   name: Faker::Creature::Animal.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 0,
+                   breed: nil,
+                   description: "This parakeet loves to sing!",
+                   gender: 'female',
+                   fixed: nil,
+                   house_trained: nil,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: nil,
+                   good_with_animals: nil)
+@pet_11 = Pet.create(id: 11,
+                   user_id: @user_5.id,
+                   name: Faker::Creature::Cat.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 1,
+                   breed: Faker::Creature::Cat.breed,
+                   description: "Loves to catch mice!",
+                   gender: 'male',
+                   fixed: [true, false].sample,
+                   house_trained: [true, false].sample,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: [true, false].sample,
+                   good_with_animals: [true, false].sample)
+@pet_12 = Pet.create(id: 12,
+                   user_id: @user_6.id,
+                   name: Faker::Creature::Dog.name,
+                   age: [1, 2, 3, 4, 5, 6].sample,
+                   pet_type: 1,
+                   breed: Faker::Creature::Dog.breed,
+                   description: "Loves to go on walks!",
+                   gender: Faker::Creature::Dog.gender,
+                   fixed: [true, false].sample,
+                   house_trained: [true, false].sample,
+                   photo_url_1: "photo_url",
+                   photo_url_2: nil,
+                   photo_url_3: nil,
+                   good_with_kids: [true, false].sample,
+                   good_with_animals: [true, false].sample)
+
+@favorite_1 = Favorite.create(id: 1,
+                              user_id: @user_1.id,
+                              pet_id: @pet_4.id)
+@favorite_2 = Favorite.create(id: 2,
+                              user_id: @user_2.id,
+                              pet_id: @pet_7.id)
+@favorite_3 = Favorite.create(id: 3,
+                              user_id: @user_2.id,
+                              pet_id: @pet_9.id)
+@favorite_4 = Favorite.create(id: 4,
+                              user_id: @user_3.id,
+                              pet_id: @pet_1.id)
+@favorite_5 = Favorite.create(id: 5,
+                              user_id: @user_3.id,
+                              pet_id: @pet_2.id)
+@favorite_6 = Favorite.create(id: 6,
+                              user_id: @user_4.id,
+                              pet_id: @pet_1.id)
+@favorite_7 = Favorite.create(id: 7,
+                              user_id: @user_7.id,
+                              pet_id: @pet_12.id)
+
+@app_1 = Application.create(id: 1,
+                            user_id: @user_1.id,
+                            pet_id: @pet_4.id,
+                            status: 0,
+                            description: "I would be a great pet owner!")
+@app_2 = Application.create(id: 2,
+                            user_id: @user_2.id,
+                            pet_id: @pet_7.id,
+                            status: 1,
+                            description: "I really want this pet!")
+@app_3 = Application.create(id: 3,
+                            user_id: @user_2.id,
+                            pet_id: @pet_9.id,
+                            status: 2,
+                            description: "I have a big yard!")
+@app_4 = Application.create(id: 4,
+                            user_id: @user_3.id,
+                            pet_id: @pet_1.id,
+                            status: 0,
+                            description: "I would love this dog so much!")
+@app_5 = Application.create(id: 5,
+                            user_id: @user_4.id,
+                            pet_id: @pet_1.id,
+                            status: 0,
+                            description: "My kids would love to have this dog!")
+@app_6 = Application.create(id: 6,
+                            user_id: @user_5.id,
+                            pet_id: @pet_8.id,
+                            status: 2,
+                            description: "I've always wanted a gecko!")
+
+puts 'Seeding complete!'
