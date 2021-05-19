@@ -7,31 +7,33 @@ RSpec.describe "api/v1/applications", type: :request do
 
   describe "Happy path" do
     it "returns a application object if all required information is provided" do
-      application_params = { user_id: @users.first.id,
-                             pet_id: @users.last.pets.last.id,
-                             description: "I'd be good because..."
-                           }
-      headers = {"CONTENT_TYPE" => "application/json",
-                 "ACCEPT"       => "application/json"}
+      VCR.use_cassette "new_application" do
+        application_params = { user_id: @users.first.id,
+                               pet_id: @users.last.pets.last.id,
+                               description: "I'd be good because..."
+                             }
+        headers = {"CONTENT_TYPE" => "application/json",
+                   "ACCEPT"       => "application/json"}
 
-      post '/api/v1/pet_applications', headers: headers, params: application_params.to_json
+        post '/api/v1/pet_applications', headers: headers, params: application_params.to_json
 
-      new_application = Application.last
-      body = JSON.parse(response.body, symbolize_names: true)
+        new_application = Application.last
+        body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response).to be_successful
-      expect(response.status).to eq(201)
-      expect(response.content_type).to eq("application/json")
-      expect(body.keys).to eq([:data])
-      expect(body[:data].keys).to eq([:id, :type, :attributes])
-      expect(body[:data][:id]).to eq("#{new_application.id}")
-      expect(body[:data][:type]).to eq("application")
-      expect(body[:data][:attributes]).to be_a(Hash)
-      expect(body[:data][:attributes].keys).to eq([:user_id, :pet_id, :status, :description])
-      expect(body[:data][:attributes][:user_id]).to eq(@users.first.id)
-      expect(body[:data][:attributes][:pet_id]).to eq(@users.last.pets.last.id)
-      expect(body[:data][:attributes][:status]).to eq("pending")
-      expect(body[:data][:attributes][:description]).to eq("I'd be good because...")
+        expect(response).to be_successful
+        expect(response.status).to eq(201)
+        expect(response.content_type).to eq("application/json")
+        expect(body.keys).to eq([:data])
+        expect(body[:data].keys).to eq([:id, :type, :attributes])
+        expect(body[:data][:id]).to eq("#{new_application.id}")
+        expect(body[:data][:type]).to eq("application")
+        expect(body[:data][:attributes]).to be_a(Hash)
+        expect(body[:data][:attributes].keys).to eq([:user_id, :pet_id, :status, :description])
+        expect(body[:data][:attributes][:user_id]).to eq(@users.first.id)
+        expect(body[:data][:attributes][:pet_id]).to eq(@users.last.pets.last.id)
+        expect(body[:data][:attributes][:status]).to eq("pending")
+        expect(body[:data][:attributes][:description]).to eq("I'd be good because...")
+      end
     end
   end
 
