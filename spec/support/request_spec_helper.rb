@@ -3,7 +3,9 @@ module RequestRailsHelper
   def seed_test_db
     @users = create_list(:user, 2)
     @users.first.email = "another@email.com"
+    @users.second.email = "yet_another@email.com"
     @users.first.save
+    @users.second.save
 
     @users.each do |user|
       (5).times do
