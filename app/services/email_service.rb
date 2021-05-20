@@ -14,8 +14,8 @@ class EmailService
     application = Application.find(application_id)
     to = application.user.email
     from = application.pet.user.email
-    subject = "You're request to adoped #{application.pet.name}, updated."
-    content = "You're request to adoped #{application.pet.name}, updated.\n You can view you dashboard here: <need FE web address>"
+    subject = "You're request to adoped a pet has been updated."
+    content = "You're request to adoped a pet has been updated.\n You can view you dashboard here: <need FE web address>"
 
     send_email(to, from, subject, content)
   end
