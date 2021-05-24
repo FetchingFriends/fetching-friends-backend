@@ -39,9 +39,9 @@ puts 'Seeding database with all the furry friends..'
                    gender: Faker::Creature::Dog.gender,
                    fixed: true,
                    house_trained: true,
-                   photo_url_1: "https://lh3.googleusercontent.com/proxy/vNr6i12gr0-b2nsOkj58bobpvhZYF75D7anOCqgl1WCrXixAxL7a5uw-zHd2j_cuR4L29VP1DAIaRHD0trkYBIISxuNEcPHgZ5g9N1iuk64PafYM",
-                   photo_url_2: "https://lh3.googleusercontent.com/proxy/LPl6cRn9dLJaA37dzk0ta2_Per0KvstGMgldmDoPEVNCY4R43N0XZqZpe4fKgNKp0-n2tcMpEYsYgaztc2t-tPU7U2T5Xyp3wr7zl4oQXxEoIVPiEQ",
-                   photo_url_3: "https://lh3.googleusercontent.com/proxy/gMiu38izvcaGZi6QfzE_o_mf3sHsEQfj6A-ipwMgSCc26VOT-DjWweu4vj4WAXVQW7ucumM61Qo33mN3ojOqRxEiYmnMXkq9rjTbzxoK884JgFXiyQ",
+                   photo_url_1: "https://thehappypuppysite.com/wp-content/uploads/2019/04/How-Long-Do-Pugs-Live-long.jpg",
+                   photo_url_2: "https://i1.wp.com/nypost.com/wp-content/uploads/sites/2/2020/04/pugs-coronavirus.jpg?quality=80&strip=all&ssl=1",
+                   photo_url_3: "https://www.purina.com.au/-/media/project/purina/main/breeds/dog/mobile/dog_pugs_mobile.jpg?h=300&la=en&w=375&hash=5BF9CFC4E6FC7347E6FDA383E42D8A52",
                    good_with_kids: true,
                    good_with_animals: true)
 @pet_2 = Pet.create(id: 2,
