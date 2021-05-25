@@ -83,7 +83,7 @@
     ]
   }
   ```
-  
+
 ## Pets by User
 `GET /api/v1/user/5/pets`
   ```json
@@ -91,23 +91,23 @@
     "data": [
       {
         "id": "1",
-          "type": "pet",
-          "attributes": {
-            "type": "dog",
-            "user_id": 5,
-            "name": "Max",
-            "age": 1,
-            "breed": "Lab",
-            "description": "Good Boy",
-            "gender": "M",
-            "fix": true,
-            "house trained": true,
-            "good with kids": true,
-            "good with other pets": true,
-            "photo_url_1": "URL Path",
-            "photo_url_2": "URL Path",
-            "photo_url_3": "URL Path",
-          }
+        "type": "pet",
+        "attributes": {
+          "type": "dog",
+          "user_id": 5,
+          "name": "Max",
+          "age": 1,
+          "breed": "Lab",
+          "description": "Good Boy",
+          "gender": "M",
+          "fix": true,
+          "house trained": true,
+          "good with kids": true,
+          "good with other pets": true,
+          "photo_url_1": "URL Path",
+          "photo_url_2": "URL Path",
+          "photo_url_3": "URL Path",
+        }
       },
       {
         "id": "4",

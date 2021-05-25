@@ -13,10 +13,10 @@ module RequestRailsHelper
       end
     end
 
-    @users.first.applications.create!(pet: @users.second.pets.first, description: "I want it!")
-    @users.first.applications.create!(pet: @users.second.pets.second, description: "I want it!")
-    @users.second.applications.create!(pet: @users.first.pets.second, description: "I want it!")
-    @users.second.applications.create!(pet: @users.first.pets.first, description: "I want it!")
+    @users.first.applications.create!(pet: @users.second.pets.first, pet_name: @users.second.pets.first.name, description: "I want it!")
+    @users.first.applications.create!(pet: @users.second.pets.second, pet_name: @users.second.pets.second.name, description: "I want it!")
+    @users.second.applications.create!(pet: @users.first.pets.second, pet_name: @users.first.pets.second.name, description: "I want it!")
+    @users.second.applications.create!(pet: @users.first.pets.first, pet_name: @users.first.pets.first.name, description: "I want it!")
 
     @users.first.favorites.create!(pet: @users.second.pets.first)
     @users.first.favorites.create!(pet: @users.second.pets.last)
