@@ -235,31 +235,37 @@ puts 'Seeding database with all the furry friends..'
 @app_1 = Application.create(id: 1,
                             user_id: @user_1.id,
                             pet_id: @pet_4.id,
+                            pet_name: @pet_4.name,
                             status: 0,
                             description: "I would be a great pet owner!")
 @app_2 = Application.create(id: 2,
                             user_id: @user_2.id,
                             pet_id: @pet_7.id,
+                            pet_name: @pet_7.id,
                             status: 1,
                             description: "I really want this pet!")
 @app_3 = Application.create(id: 3,
                             user_id: @user_2.id,
                             pet_id: @pet_9.id,
+                            pet_name: @pet_9.name,
                             status: 2,
                             description: "I have a big yard!")
 @app_4 = Application.create(id: 4,
                             user_id: @user_3.id,
                             pet_id: @pet_1.id,
+                            pet_name: @pet_1.name,
                             status: 0,
                             description: "I would love this dog so much!")
 @app_5 = Application.create(id: 5,
                             user_id: @user_4.id,
                             pet_id: @pet_1.id,
+                            pet_name: @pet_1.name,
                             status: 0,
                             description: "My kids would love to have this dog!")
 @app_6 = Application.create(id: 6,
                             user_id: @user_5.id,
                             pet_id: @pet_8.id,
+                            pet_name: @pet_8.name,
                             status: 2,
                             description: "I've always wanted a gecko!")
 
