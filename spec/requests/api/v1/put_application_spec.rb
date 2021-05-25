@@ -23,6 +23,7 @@ RSpec.describe "api/v1/pet_applications", type: :request do
         expect(response.status).to eq(200)
         expect(response.content_type).to eq("application/json")
         expect(body.keys).to eq([:data])
+        expect(body[:data]).to be_a(Hash)
         expect(body[:data].keys).to eq([:id, :type, :attributes])
         expect(body[:data][:id]).to eq("#{application.id}")
         expect(body[:data][:type]).to eq("application")
