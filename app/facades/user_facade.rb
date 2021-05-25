@@ -15,19 +15,22 @@ class UserFacade
         favorite.pet
       end
 
-      pets_list = user.pets.map do |pet|
-        {id: pet.id, type: "pet", attributes: {user_id: pet.user_id, name: pet.name, age: pet.age, pet_type: pet.pet_type, breed: pet.breed, description:pet.description, gender: pet.gender, fixed: pet.fixed, house_trained: pet.house_trained, photo_url_1: pet.photo_url_1, photo_url_2: pet.photo_url_2, photo_url_3: pet.photo_url_3, good_with_kids: pet.good_with_kids, good_with_animals: pet.good_with_animals, created_at: pet.created_at, updated_at: pet.updated_at}}
-      end
-
       OpenStruct.new(
                       id: user.id,
                       username: user.username,
                       email: user.email,
-                      pets: pets_list,
+                      pets: pet_list(user.pets),
                       applications: user.applications,
-                      favorites: favorite_pets,
+                      favorites: pet_list(favorite_pets),
                       pet_applications: pet_applications
                     )
+    end
+
+  end
+
+  def self.pet_list(pets)
+    pets.map do |pet|
+      {id: pet.id, type: "pet", attributes: {user_id: pet.user_id, name: pet.name, age: pet.age, pet_type: pet.pet_type, breed: pet.breed, description:pet.description, gender: pet.gender, fixed: pet.fixed, house_trained: pet.house_trained, photo_url_1: pet.photo_url_1, photo_url_2: pet.photo_url_2, photo_url_3: pet.photo_url_3, good_with_kids: pet.good_with_kids, good_with_animals: pet.good_with_animals, created_at: pet.created_at, updated_at: pet.updated_at}}
     end
   end
 end
