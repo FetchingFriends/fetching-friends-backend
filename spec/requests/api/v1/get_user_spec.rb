@@ -35,10 +35,10 @@ RSpec.describe "GET api/v1/users?email=<user_email>", type: :request do
       expect(user_object[:data][:attributes][:favorites].first.keys).to eq([ :id, :user_id, :name, :age, :pet_type, :breed, :description, :gender, :fixed, :house_trained, :photo_url_1, :photo_url_2, :photo_url_3, :good_with_kids, :good_with_animals, :created_at, :updated_at])
       expect(user_object[:data][:attributes][:applications]).to be_an(Array)
       expect(user_object[:data][:attributes][:applications].first).to be_a(Hash)
-      expect(user_object[:data][:attributes][:applications].first.keys).to eq([:id, :user_id, :pet_id, :status, :description, :created_at, :updated_at])
+      expect(user_object[:data][:attributes][:applications].first.keys).to eq([:id, :user_id, :pet_id, :status, :description, :created_at, :updated_at, :pet_name])
       expect(user_object[:data][:attributes][:pet_applications]).to be_an(Array)
       expect(user_object[:data][:attributes][:pet_applications].first).to be_a(Hash)
-      expect(user_object[:data][:attributes][:pet_applications].first.keys).to eq([:id, :user_id, :pet_id, :status, :description, :created_at, :updated_at])
+      expect(user_object[:data][:attributes][:pet_applications].first.keys).to eq([:id, :user_id, :pet_id, :status, :description, :created_at, :updated_at, :pet_name])
     end
   end
 

@@ -28,9 +28,10 @@ RSpec.describe "api/v1/applications", type: :request do
         expect(body[:data][:id]).to eq("#{new_application.id}")
         expect(body[:data][:type]).to eq("application")
         expect(body[:data][:attributes]).to be_a(Hash)
-        expect(body[:data][:attributes].keys).to eq([:user_id, :pet_id, :status, :description])
+        expect(body[:data][:attributes].keys).to eq([:user_id, :pet_id, :pet_name, :status, :description])
         expect(body[:data][:attributes][:user_id]).to eq(@users.first.id)
         expect(body[:data][:attributes][:pet_id]).to eq(@users.last.pets.last.id)
+        expect(body[:data][:attributes][:pet_name]).to eq(@users.last.pets.last.name)
         expect(body[:data][:attributes][:status]).to eq("pending")
         expect(body[:data][:attributes][:description]).to eq("I'd be good because...")
       end
@@ -66,8 +67,8 @@ RSpec.describe "api/v1/applications", type: :request do
       body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to_not be_successful
-      expect(response.status).to eq(400)
-      expect(body).to eq({error: "Pet must exist"})
+      expect(response.status).to eq(404)
+      expect(body).to eq({error: "Couldn't find Pet without an ID"})
     end
 
     it "returns an error if all required information is not provided" do

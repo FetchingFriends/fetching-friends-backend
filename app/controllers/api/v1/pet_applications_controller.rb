@@ -6,6 +6,7 @@ class Api::V1::PetApplicationsController < ApplicationController
 
   def create
     application = Application.new(application_params)
+    application.pet_name = Pet.find(application.pet_id).name
     if application.save
       EmailService.new_application(application.id)
       # NewAppEmailJob.perform_later(application)
