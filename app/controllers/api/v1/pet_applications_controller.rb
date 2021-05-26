@@ -5,8 +5,8 @@ class Api::V1::PetApplicationsController < ApplicationController
     application = Application.new(application_params)
     application.pet_name = Pet.find(application.pet_id).name
     if application.save
-      EmailService.new_application(application.id)
-      # NewAppEmailJob.perform_later(application)
+      # EmailService.new_application(application.id)
+      NewAppEmailJob.perform_later(application)
       render json: ApplicationSerializer.new(application), status: :created
     else
       render json: { error: application.errors.full_messages.to_sentence }, status: :bad_request
@@ -17,8 +17,8 @@ class Api::V1::PetApplicationsController < ApplicationController
       application = Application.find(params[:id])
       application.status = params[:status]
       if application.save!
-        EmailService.update_application(application.id, application.status) unless application.pending?
-        # UpdateAppEmailJob.perform_later(application)
+        # EmailService.update_application(application.id, application.status) unless application.pending?
+        UpdateAppEmailJob.perform_later(application)
         render json: ApplicationSerializer.new(application), status: :ok
       end
   end
