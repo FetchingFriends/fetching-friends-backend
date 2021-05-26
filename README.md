@@ -1,72 +1,65 @@
 # Fetching Friends
 
-One Paragraph of the project description
+### Jump To
+- [About](#about)
+- [Getting Started](#getting-started)
+- [Setup](#setup)
+- [Running the tests](#running-the-tests)
+- [Database Schema](#database-schema)
+- [Endpoint Documentation](#endpoint-documentation)
+- [Future Iterations](#future-iterations)
+- [Authors](#authors)
+
+## About 
+
+Fetching Friends is an application designed to help you find your next pet! Future pet parents have the ability to search through the available pets based on certain criteria you are looking for. Once a desired pet is found, you can submit an application straight to the owner to apply for your furry friend. This application also caters towards the needs of someone who has a pet to offer for adoption by giving them a platform to post their animals.
+
+This repo is holds the back-end for Fetching Friends and is consumed by our front-end. The front-end repo can be found [here](https://github.com/FetchingFriends/fetching-friends-ui).
+
+[Fetching Friends Back-end Heroku](https://fetching-friends-backend.herokuapp.com/)
 
 ## Getting Started
 
 These instructions will give you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on deploying the project on a live system.
+your local machine for development and testing purposes. 
 
-### Prerequisites
+### Setup
 
-Requirements for the software and other tools to build, test and push 
-- [Example 1](https://www.example.com)
-- [Example 2](https://www.example.com)
+**Version Requirements**
+* ruby 2.5.3
+* rails 5.2
 
-### Installing
+1. Clone this repo:
 
-A step by step series of examples that tell you how to get a development
-environment running
+       $ git clone git@github.com:FetchingFriends/fetching-friends-backend.git
+2. `cd` into `fetching-friends-backend`
+3. Run `bundle install`
+4. Run `rails db:{create,migrate,seed}`
 
-Say what the step will be
+### Running the tests
 
-    Give the example
+To check out our in-depth test suite, run:
 
-And repeat
+    $ bundle exec rspec
 
-    until finished
+## Database Schema 
 
-End with an example of getting some data out of the system or using it
-for a little demo
+- add db schema
+- 
+## Endpoint Documentation
 
-## Running the tests
+- add endpoints
 
-Explain how to run the automated tests for this system
+## Future Iterations
 
-### Sample Tests
+- miro board?
+- future iterations
 
-Explain what these tests test and why
 
-    Give an example
 
-### Style test
+- screen shot of the application somewhere?
 
-Checks if the best practices and the right coding style has been used.
 
-    Give an example
-
-## Deployment
-
-Add additional notes to deploy this on a live system
-
-## Built With
-
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
-of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [Semantic Versioning](http://semver.org/) for versioning. For the versions
-available, see the [tags on this
-repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
 
 ## Authors
 
@@ -85,14 +78,3 @@ repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
   
 See also the list of [contributors](https://github.com/FetchingFriends/fetching-friends-backend/graphs/contributors)
 
-## License
-
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
-details
-
-## Acknowledgments
-
-  - Hat tip to anyone whose code is used
-  - Inspiration
-  - etc
