@@ -22,7 +22,12 @@ RSpec.describe UserFacade, type: :model do
       expect(data.pets.first[:type]).to eq("pet")
       expect(data.pets.first[:attributes].keys).to eq([:user_id, :name, :age, :pet_type, :breed, :description, :gender, :fixed, :house_trained, :photo_url_1, :photo_url_2, :photo_url_3, :good_with_kids, :good_with_animals, :created_at, :updated_at])
       expect(data.applications).to eq(user.applications)
-      expect(data.favorites).to eq([@users.second.pets.first, @users.second.pets.last])
+      expect(data.favorites).to be_an(Array)
+      expect(data.favorites.first).to be_a(Hash)
+      expect(data.favorites.first.keys).to eq([ :id, :type, :attributes])
+      expect(data.favorites.first[:id]).to eq(@users.second.pets.first.id)
+      expect(data.favorites.first[:type]).to eq("pet")
+      expect(data.favorites.first[:attributes].keys).to eq([:user_id, :name, :age, :pet_type, :breed, :description, :gender, :fixed, :house_trained, :photo_url_1, :photo_url_2, :photo_url_3, :good_with_kids, :good_with_animals, :created_at, :updated_at])
       expect(data.pet_applications).to eq([@users.second.applications.second, @users.second.applications.first])
     end
 
