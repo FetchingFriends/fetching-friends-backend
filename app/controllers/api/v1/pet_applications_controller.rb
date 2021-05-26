@@ -1,7 +1,4 @@
 class Api::V1::PetApplicationsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
-  rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_record
-  rescue_from ArgumentError, with: :render_invalid_status
   before_action :validate_params, only: :create
 
   def create
@@ -34,17 +31,5 @@ class Api::V1::PetApplicationsController < ApplicationController
 
   def validate_params
     render json: { error: 'Must provide request body' }, status: :bad_request if request.body.read.blank?
-  end
-
-  def render_not_found(exception)
-    render json: { error: exception.message }, status: :not_found
-  end
-
-  def render_invalid_record(exception)
-    render json: { error: exception.message }, status: :not_found
-  end
-
-  def render_invalid_status(exception)
-    render json: { error: exception.message }, status: :not_found
   end
 end
