@@ -9,6 +9,7 @@
 | GET | /api/v1/users/:user_id | Get a user, and users pets, favorited  pets, and applications| [json](#all-user-data) |
 | POST | /api/v1/users | Create a new user | [json](#create-user) |
 | POST | /api/v1/pets | Create a new pet | [json](#create-pet) |
+| POST | /api/v1/pet_applications | Create a new application | [json](#create-application) |
 | DELETE | /api/v1/pets/:pet_id  | Delete a pet | [details](#delete-a-pet) |
 | DELETE | /api/v1/application/:application_id  | Delete an application | [details](#delete-an-application) |
 | PUT | /api/v1/application/:application_id | Update an application | [json](#update-an-application)
@@ -261,7 +262,23 @@
     }
   }
   ```
-
+  ## Create New Application
+  `POST /api/v1/pet_applications`
+    ```json
+    {
+    "data": {
+        "id": "9",
+        "type": "application",
+        "attributes": {
+            "user_id": 25,
+            "pet_id": 13,
+            "pet_name": "Max",
+            "status": "pending",
+            "description": "I'd be good because..."
+        }
+    }
+}
+    ```
 ## Delete a Pet
 `DELETE /api/v1/pets/:pet_id`
 - remove pet from database if the id matches
