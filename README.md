@@ -15,7 +15,7 @@ Fetching Friends is an application designed to help you find your next pet! Futu
 
 This repo is holds the back-end for Fetching Friends and is consumed by our front-end. The front-end repo can be found [here](https://github.com/FetchingFriends/fetching-friends-ui).
 
-[Fetching Friends Back-end Heroku](https://fetching-friends-backend.herokuapp.com/)
+[Fetching Friends Back-end Heroku](https://fetching-friends-backend.herokuapp.com/) | [Fetching Friends Front-end Heroku](https://fetching-friends.herokuapp.com/)
 
 ## Getting Started
 
