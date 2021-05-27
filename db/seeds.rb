@@ -121,7 +121,7 @@ puts 'Seeding database with all the furry friends..'
                    good_with_animals: [true, false].sample)
 @pet_7 = Pet.create(id: 7,
                    user_id: @user_3.id,
-                   name: Faker::Creature::Animal.name,
+                   name: Faker::Creature::Dog.name,
                    age: [1, 2, 3, 4, 5, 6].sample,
                    pet_type: 0,
                    breed: nil,
@@ -136,7 +136,7 @@ puts 'Seeding database with all the furry friends..'
                    good_with_animals: nil)
 @pet_8 = Pet.create(id: 8,
                    user_id: @user_3.id,
-                   name: Faker::Creature::Animal.name,
+                   name: Faker::Creature::Dog.name,
                    age: [1, 2, 3, 4, 5, 6].sample,
                    pet_type: 0,
                    breed: nil,
@@ -166,7 +166,7 @@ puts 'Seeding database with all the furry friends..'
                    good_with_animals: [true, false].sample)
 @pet_10 = Pet.create(id: 10,
                    user_id: @user_4.id,
-                   name: Faker::Creature::Animal.name,
+                   name: Faker::Creature::Dog.name,
                    age: [1, 2, 3, 4, 5, 6].sample,
                    pet_type: 0,
                    breed: nil,
