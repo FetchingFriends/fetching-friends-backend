@@ -7,7 +7,6 @@
 - [Running the tests](#running-the-tests)
 - [Database Schema](#database-schema)
 - [Endpoint Documentation](#endpoint-documentation)
-- [Future Iterations](#future-iterations)
 - [Authors](#authors)
 
 ## About 
@@ -40,35 +39,38 @@ your local machine for development and testing purposes.
 
 To check out our in-depth test suite, run:
 
-    $ bundle exec rspec
+    $ bundle exec rspec 
+
 
 ## Database Schema 
 
-- add db schema
-- 
+ ![alt_text](https://user-images.githubusercontent.com/71908665/119854480-5562a280-bece-11eb-9031-211ffeded394.png)
+
 ## Endpoint Documentation
 
-- add endpoints
-
-## Future Iterations
-
-- miro board?
-- future iterations
-
-
-
-- screen shot of the application somewhere?
-
-
+| HTTP verbs | Paths  | Used for | Output |
+| ---------- | ------ | -------- | ------:|
+| GET | /api/v1/pets?type=dog | Get all pets of a given type | [json](#pets-by-type) |
+| GET | /api/v1/user/:id/pets | Get all pets belonging to a user | [json](#pets-by-user) |
+| GET | /api/v1/users/:user_id | Get a user, and users pets, favorited  pets, and applications| [json](#all-user-data) |
+| POST | /api/v1/users | Create a new user | [json](#create-user) |
+| POST | /api/v1/pets | Create a new pet | [json](#create-pet) |
+| DELETE | /api/v1/pets/:pet_id  | Delete a pet | [details](#delete-a-pet) |
+| DELETE | /api/v1/application/:application_id  | Delete an application | [details](#delete-an-application) |
+| PUT | /api/v1/application/:application_id | Update an application | [json](#update-an-application)
+| PUT | /api/v1/pet/:pet_id | Update a pet | [json](#update-a-pet)
 
 ## Authors
 
+### Backend Team
 * **Jacob Arellano** -- [GitHub](https://github.com/jakejakearell) |
   [LinkedIn](https://www.linkedin.com/in/jacob-arellano-ab2890207/)
 * **Arika Blenker** -- [GitHub](https://github.com/arikalea) |
   [LinkedIn](https://www.linkedin.com/in/arika-blenker/)
 * **Doug Welchons** -- [GitHub](https://github.com/DougWelchons) |
   [LinkedIn](https://www.linkedin.com/in/douglas-welchons/)
+  
+### Frontend Team  
 * **Joshua Aragon** -- [GitHub](https://github.com/josharagon) |
   [LinkedIn](https://www.linkedin.com/in/joshua-aragon-854275206/)
 * **Matt MvVey** -- [GitHub](https://github.com/mattmcvey) |
