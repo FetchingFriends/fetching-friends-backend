@@ -9,6 +9,7 @@
 | GET | /api/v1/users/:user_id | Get a user, and users pets, favorited  pets, and applications| [json](#all-user-data) |
 | POST | /api/v1/users | Create a new user | [json](#create-user) |
 | POST | /api/v1/pets | Create a new pet | [json](#create-pet) |
+| POST | /api/v1/pet_applications | Create a new application | [json](#create-application) |
 | DELETE | /api/v1/pets/:pet_id  | Delete a pet | [details](#delete-a-pet) |
 | DELETE | /api/v1/application/:application_id  | Delete an application | [details](#delete-an-application) |
 | PUT | /api/v1/application/:application_id | Update an application | [json](#update-an-application)
@@ -30,13 +31,14 @@
             "user_id": 5,
             "name": "Max",
             "age": 1,
+            "pet_type": 1,
             "breed": "Lab",
             "description": "Good Boy",
             "gender": "M",
-            "fix": true,
-            "house trained": true,
-            "good with kids": true,
-            "good with other pets": true,
+            "fixed": true,
+            "house_trained": true,
+            "good_with_kids": true,
+            "good_with_animals": true,
             "photo_url_1": "URL Path",
             "photo_url_2": "URL Path",
             "photo_url_3": "URL Path",
@@ -49,13 +51,14 @@
             "user_id": 2,
             "name": "Lassy",
             "age": 5,
+            "pet_type": 1,
             "breed": "Boxer",
             "description": "Very nice and lovable",
             "gender": "F",
-            "fix": false,
-            "house trained": true,
-            "good with kids": true,
-            "good with other pets": true,
+            "fixed": false,
+            "house_trained": true,
+            "good_with_kids": true,
+            "good_with_animals": true,
             "photo_url_1": "URL Path",
             "photo_url_2": "URL Path",
             "photo_url_3": "URL Path",
@@ -68,13 +71,14 @@
             "user_id": 9,
             "name": "Sport",
             "age": 0,
+            "pet_type": 1,
             "breed": "Lab",
             "description": "Good Boy",
             "gender": "M",
-            "fix": false,
-            "house trained": false,
-            "good with kids": true,
-            "good with other pets": true,
+            "fixed": false,
+            "house_trained": true,
+            "good_with_kids": true,
+            "good_with_animals": true,
             "photo_url_1": "URL Path",
             "photo_url_2": "URL Path",
             "photo_url_3": "URL Path",
@@ -91,43 +95,44 @@
     "data": [
       {
         "id": "1",
-        "type": "pet",
-        "attributes": {
-          "type": "dog",
-          "user_id": 5,
-          "name": "Max",
-          "age": 1,
-          "breed": "Lab",
-          "description": "Good Boy",
-          "gender": "M",
-          "fix": true,
-          "house trained": true,
-          "good with kids": true,
-          "good with other pets": true,
-          "photo_url_1": "URL Path",
-          "photo_url_2": "URL Path",
-          "photo_url_3": "URL Path",
-        }
+          "type": "pet",
+          "attributes": {
+            "type": "dog",
+            "user_id": 5,
+            "name": "Max",
+            "age": 1,
+            "pet_type": 1,
+            "breed": "Lab",
+            "description": "Good Boy",
+            "gender": "M",
+            "fixed": true,
+            "house_trained": true,
+            "good_with_kids": true,
+            "good_with_animals": true,
+            "photo_url_1": "URL Path",
+            "photo_url_2": "URL Path",
+            "photo_url_3": "URL Path",
+          }
       },
       {
         "id": "4",
           "type": "pet",
           "attributes": {
-            "user_id": 5,
+            "user_id": 2,
             "name": "Lassy",
             "age": 5,
+            "pet_type": 1,
             "breed": "Boxer",
             "description": "Very nice and lovable",
             "gender": "F",
-            "fix": false,
-            "house trained": true,
-            "good with kids": true,
-            "good with other pets": true,
+            "fixed": false,
+            "house_trained": true,
+            "good_with_kids": true,
+            "good_with_animals": true,
             "photo_url_1": "URL Path",
             "photo_url_2": "URL Path",
             "photo_url_3": "URL Path",
           }
-      }
       }
     ]
   }
@@ -157,8 +162,8 @@
             "photo_url_1": "URL Path",
             "photo_url_2": "URL Path",
             "photo_url_3": "URL Path",
-            "good with kids": true,
-            "good with other pets": true,
+            "good_with_kids": true,
+            "good_with_animals": true,
             "created_at": "time stamp",
             "updated_at": "time stamp"
           },
@@ -179,8 +184,8 @@
             "photo_url_1": "URL Path",
             "photo_url_2": "URL Path",
             "photo_url_3": "URL Path",
-            "good with kids": true,
-            "good with other pets": false,
+            "good_with_kids": true,
+            "good_with_animals": false,
             "created_at": "time stamp",
             "updated_at": "time stamp"
           },
@@ -236,26 +241,44 @@
   {
     "data": {
       "id": "1",
-      "type": "pet",
-      "attributes": {
-        "user_id": 9,
-        "name": "Sport",
-        "age": 0,
-        "breed": "Lab",
-        "description": "Good Boy",
-        "gender": "M",
-        "fix": false,
-        "house trained": false,
-        "good with kids": true,
-        "good with other pets": true,
-        "photo_url_1": "URL Path",
-        "photo_url_2": "URL Path",
-        "photo_url_3": "URL Path",
-      }
+        "type": "pet",
+        "attributes": {
+          "type": "dog",
+          "user_id": 5,
+          "name": "Max",
+          "age": 1,
+          "pet_type": 1,
+          "breed": "Lab",
+          "description": "Good Boy",
+          "gender": "M",
+          "fixed": true,
+          "house_trained": true,
+          "good_with_kids": true,
+          "good_with_animals": true,
+          "photo_url_1": "URL Path",
+          "photo_url_2": "URL Path",
+          "photo_url_3": "URL Path",
+        }
     }
   }
   ```
-
+  ## Create New Application
+  `POST /api/v1/pet_applications`
+    ```json
+    {
+    "data": {
+        "id": "9",
+        "type": "application",
+        "attributes": {
+            "user_id": 25,
+            "pet_id": 13,
+            "pet_name": "Max",
+            "status": "pending",
+            "description": "I'd be good because..."
+        }
+    }
+}
+    ```
 ## Delete a Pet
 `DELETE /api/v1/pets/:pet_id`
 - remove pet from database if the id matches
